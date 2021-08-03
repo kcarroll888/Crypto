@@ -57,7 +57,7 @@ getClose <- function(url) {
 coinsList <- c("ethereum", "polymath-network", "uniswap", "celsius-degree-token", "wbtc", "quant-network", "yearn-finance",
               "binancecoin","theta-token","banana-token","celsius-degree-token","hedgetrade","yearn-finance",
               "numeraire","ampleforth","dai", "bzx-protocol", "band-protocol", "tellor", "chainlink","ocean-protocol", "okb",
-              "fantom","curve-dao-token","compound-governance-token","nexo","maker","aave","balancer","bancor")
+              "fantom","curve-dao-token","compound-governance-token","nexo","maker","aave","balancer","bancor", "cream-2")
 
 ####### Shiny Front End to Play with API #########
 
