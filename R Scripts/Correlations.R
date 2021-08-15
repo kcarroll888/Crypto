@@ -53,7 +53,8 @@ ratioPair <- function(coin1 = "ethereum", coin2 = "yearn-finance", nWeeks = 5){
 }
 
 coinList <- c("yearn-finance","ethereum","numeraire","curve-dao-token","fantom","uniswap","wrapped-bitcoin",
-              "celsius-degree-token","compound-governance-token","nexo","maker","aave","balancer","bancor")
+              "celsius-degree-token","compound-governance-token","nexo","maker","aave","balancer","bancor",
+              "ftx-token","serum","matic-network")
 
 # Bulid URL endpoint call for each coin
 urlList <- lapply(coinList, closeUrl)

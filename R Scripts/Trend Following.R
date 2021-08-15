@@ -98,7 +98,15 @@ testForBreakOut <- function(id, trendPeriod = 40, weekDay = 7){
   urlEndpoint <- closeUrl(tokenName = id, numberWeeks = round(trendPeriod * 1.5))
   
   # Get the closing prices, tidy up and convert to weekly period
-  tokenPxWeeks <- getAPI(urlEndpoint) %>%
+  tokenPxWeeks <- getAPI(urlEndpoint)
+  
+  # Test the API call has returned an error
+  if(names(tokenPxWeeks)[1] == "error") {
+    # Error generated, print it out and exit
+    print(tokenPxWeeks)
+    return("check data returned")
+  }
+  tokenPxWeeks <- tokenPxWeeks %>%
                     tidyClose() %>%
                       weeks(weekDay = weekDay)
   
@@ -123,11 +131,19 @@ testForBreakOut <- function(id, trendPeriod = 40, weekDay = 7){
 findBreakpoints <- function(listToBreakup, intervalsOf = 50){
   # Given a sequence (listToBreakup), return a list cut into equal lengths
   #  determined by intervalsOf
-  len <- length(listToBreakup)
-  numbBreaks <- ifelse(len %% 50 > 0, floor(len / intervalsOf) + 1, floor(len / intervalsOf))
-  cutPoints <- split(x= 1:len, cut(x = 1:len, breaks = numbBreaks))
-  return(sapply(cutPoints, function(x) listToBreakup[x]))
-  
+  if(length(listToBreakup) < 50) {
+    # Can be done in a single list
+    retList <- listToBreakup
+  } else {
+    
+    # Otherwise calculate where the 
+    len <- length(listToBreakup)
+    numbBreaks <- ifelse(len %% 50 > 0, floor(len / intervalsOf) + 1, floor(len / intervalsOf))
+    cutPoints <- split(x= 1:len, cut(x = 1:len, breaks = numbBreaks))
+    retList <- sapply(cutPoints, function(x) listToBreakup[x])
+  }
+
+  return(retList)
 }
 
 updateMktCaps <- function(fileName = "ERC20 Token Sectors.csv"){
@@ -210,6 +226,7 @@ weeklyRun <- function(dateSaved=Sys.Date(), trendPeriod = 40, weekDay = 7){
   # trendPeriod : how many weeks to assess for a breakout
   
   tokenUniverse <- read.csv("ERC20_Sectors_Mkt_Caps.csv", stringsAsFactors = F)
+  # tokenUniverse <- read.csv("Test.csv", stringsAsFactors = F)
   tokenUniverse <- tokenUniverse[tokenUniverse$id != "",]
   
   breakOutList <- findBreakpoints(tokenUniverse$id, intervalsOf = 50)
