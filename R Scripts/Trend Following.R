@@ -104,7 +104,9 @@ testForBreakOut <- function(id, trendPeriod = 40, weekDay = 7){
   if(names(tokenPxWeeks)[1] == "error") {
     # Error generated, print it out and exit
     print(tokenPxWeeks)
-    return("check data returned")
+    brokenDF <- data.frame(id = id, isBreakout = NA, Date = NA, Close_Price = NA,
+                           Volatility = NA, Total_Volume = NA, Market_Cap = NA)
+    return(brokenDF)
   }
   tokenPxWeeks <- tokenPxWeeks %>%
                     tidyClose() %>%
@@ -120,7 +122,7 @@ testForBreakOut <- function(id, trendPeriod = 40, weekDay = 7){
   }
   
   
-  # Add in if breakout has occured
+  # Add in if breakout has occurred
   isBreakout <- tokenPxWeeks$Close_Price %>% breakOutType(trendPeriod = trendPeriod)
   
   # Return the last row of the dataframe and the type of breakout
