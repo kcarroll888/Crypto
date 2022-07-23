@@ -111,8 +111,6 @@ getAccount <- function(keys) {
 
   # Apply SHA 256 to payload using secret key
   # Returns encrypted signature as hex
-  # Read only public key "BGTgjHW9cVpDWhHwtFj8MIy77PnjaH1gTz4FX8rF"
-  # Read only secret key "sPJvyqPayC6hnezcXgJ9GT30IS4XXSsDlRivA_IP"
   signature <- hmac(key = keys$secret,
                     object = signature_payload,
                     algo = "sha256")
@@ -220,8 +218,6 @@ getOpenOrders <- function(market = "FTM-PERP") {
 
   # Apply SHA 256 to payload using secret key
   # Returns encrypted signature as hex
-  # Read only public key "BGTgjHW9cVpDWhHwtFj8MIy77PnjaH1gTz4FX8rF"
-  # Read only secret key "sPJvyqPayC6hnezcXgJ9GT30IS4XXSsDlRivA_IP"
   signature <- hmac(key = keys$secret,
                     object = signature_payload,
                     algo = "sha256")
