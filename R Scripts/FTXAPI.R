@@ -25,8 +25,6 @@ library(quantmod)  # for the xts finance & time series functions
 
 options(scipen = 99999)
 
-# setwd("C:/Users/kurtc/Google Drive/Crypto")
-
 # Read in the public and secret keys
 keys <- if (file.exists("keys.csv")) {
   read.csv("keys.csv", stringsAsFactors = F)
