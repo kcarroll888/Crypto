@@ -378,7 +378,7 @@ breakOutReturn <- function(pxSeries, type = "Low") {
 
 ############### SAVE A FILE OF BREAKOUTS AND SEND AS AN EMAIL ATTACHMENT ########################
 
-yesterday <- ymd_hms(paste(today() - 1, "22:00:00"))
+yesterday <- ymd_hms(paste(today(), "22:00:00"))
 fromDate <- yesterday - days(x = 150)
 mkts <- getMarkets()
 
