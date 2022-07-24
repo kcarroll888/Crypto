@@ -192,7 +192,7 @@ updateMktCaps <- function(fileName = "ERC20 Token Sectors.csv"){
     if(indx > length(urlList)) {break}
     if(indx %% 50 == 0){
       print("Pausing 60 seconds to comply with coingecko API protocol")
-      Sys.sleep(60)
+      Sys.sleep(65)
     }
   }
   # mktCaps <- lapply(urlList, getAPI)
@@ -242,7 +242,7 @@ weeklyRun <- function(dateSaved=Sys.Date(), trendPeriod = 40, weekDay = 7){
     bOuts <- rbind(bOuts, brkOuts)
     if(indx > length(breakOutList)) {break}
     print("Pausing 60 seconds to comply with coingecko API protocol")
-    Sys.sleep(60)
+    Sys.sleep(70)
   }
   
   write.csv(bOuts, paste0("Breakouts/", dateSaved, " ", trendPeriod, " Week Breakouts.csv"), row.names = F)
